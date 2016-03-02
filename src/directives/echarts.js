@@ -3,7 +3,13 @@ var echarts = require('echarts');
 
 module.exports = {
     deep: true,
-    params: ['chart-id'],
+    params: ['id', 'option'],
+    paramWatchers: {
+        option: function (val, oldVal) {
+            var _this = this;
+            _this.instance.setOption(val);
+        }
+    },
     bind: function () {
         var _this = this;
 
@@ -13,7 +19,8 @@ module.exports = {
 
         Vue.nextTick(function () {
             _this.instance = echarts.init(_this.el);
-            _this.vm.$echarts[_this.params.chartId] = _this.instance;
+            _this.instance.setOption(_this.params.option);
+            _this.vm.$echarts[_this.params.id] = _this.instance;
 
             _this.resizeEventHandler = function () {
                 _this.instance.resize();
@@ -26,19 +33,11 @@ module.exports = {
             };
         });
     },
-    update: function (val, oldVal) {
-        var _this = this;
-        var options = val;
-
-        Vue.nextTick(function () {
-            _this.instance.setOption(options);
-        });
-    },
     unbind: function () {
         var _this = this;
 
         _this.instance.dispose();
-        delete _this.vm.$echarts[_this.params.chartId];
+        delete _this.vm.$echarts[_this.params.id];
 
         _this.el.removeEventListener('resize', _this.resizeEventHandler, false);
     }
