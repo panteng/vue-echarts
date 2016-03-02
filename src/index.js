@@ -5,6 +5,9 @@ var VueRouter = require('vue-router');
 Vue.use(VueRouter);
 Vue.config.debug = true;
 
+// register directives
+Vue.directive('echarts', require('./directives/echarts'));
+
 // register views
 Vue.component('v-bar', require('./views/bar'));
 Vue.component('v-line', require('./views/line'));

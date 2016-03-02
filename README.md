@@ -1,2 +1,2 @@
 # vue-echarts
-Echarts component for Vue.js.
+A custom directive for using Echarts in Vue.js apps.
