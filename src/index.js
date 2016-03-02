@@ -7,7 +7,7 @@ Vue.config.debug = true;
 
 // register views
 Vue.component('v-bar', require('./views/bar'));
-Vue.component('v-line', require('./views/pie'));
+Vue.component('v-line', require('./views/line'));
 Vue.component('v-pie', require('./views/pie'));
 
 // app setup
@@ -18,7 +18,8 @@ var App = Vue.extend({
 
 // router setup
 var Router = new VueRouter({
-    history: false
+    history: false,
+    linkActiveClass: 'active'
 });
 
 Router.map({

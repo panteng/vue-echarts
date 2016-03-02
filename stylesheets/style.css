@@ -1,0 +1,8 @@
+body {
+    padding: 30px;
+}
+
+.tab-content {
+    border: 1px solid #ddd;
+    border-top: none;
+}
