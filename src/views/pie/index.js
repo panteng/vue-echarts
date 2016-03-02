@@ -4,7 +4,8 @@ module.exports = {
     template: require('./template.html'),
     data: function () {
         return {
-            pieChartOption: null
+            pieChartOption: null,
+            pieChartLoading: false
         }
     },
     created: function () {
@@ -44,11 +45,14 @@ module.exports = {
                 }
             ]
         };
+
+        vm.loadData();
     },
-    ready: function () {
-        var vm = this;
-        Vue.nextTick(function () {
-            vm.$echarts.pieChart.showLoading();
+    methods: {
+        loadData: function () {
+            var vm = this;
+            vm.pieChartLoading = true;
+            // simulate ajax calls
             setTimeout(function () {
                 vm.pieChartOption.series[0].data = [
                     { value:335, name:'A' },
@@ -57,8 +61,8 @@ module.exports = {
                     { value:235, name:'D' },
                     { value:400, name:'E' }
                 ].sort(function (a, b) { return a.value - b.value});
-                vm.$echarts.pieChart.hideLoading();
+                vm.pieChartLoading = false;
             }, 3000)
-        })
+        }
     }
 };
