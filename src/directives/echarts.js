@@ -14,23 +14,24 @@ module.exports = {
         Vue.nextTick(function () {
             _this.instance = echarts.init(_this.el);
             _this.vm.$echarts[_this.params.chartId] = _this.instance;
-
-            _this.resizeEventHandler = function () {
-                _this.instance.resize();
-            };
-
-            _this.el.addEventListener('resize', _this.resizeEventHandler, false);
-
-            window.onresize = function () {
-                _this.el.dispatchEvent(new Event('resize'));
-            };
         });
+
+
+        _this.resizeEventHandler = function () {
+            _this.instance.resize();
+        };
+
+        _this.el.addEventListener('resize', _this.resizeEventHandler, false);
+
+        window.onresize = function () {
+            _this.el.dispatchEvent(new Event('resize'));
+        };
     },
     update: function (val, oldVal) {
         var _this = this;
         var options = val;
 
-        Vue.nextTick(function () {
+        Vue.nextTick(function() {
             _this.instance.setOption(options);
         });
     },

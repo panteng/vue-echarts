@@ -1,28 +1,24 @@
+var Vue = require('vue');
+
 module.exports = {
     template: require('./template.html'),
     data: function () {
         return {
-            pieChartOption: {}
+            pieChartOption: null
         }
     },
     created: function () {
         var vm = this;
 
         vm.pieChartOption = {
-            tooltip : {},
-            series : [
+            tooltip: {},
+            series: [
                 {
-                    name:'Num',
-                    type:'pie',
-                    radius : '65%',
+                    name: 'Num',
+                    type: 'pie',
+                    radius: '65%',
                     center: ['50%', '50%'],
-                    data:[
-                        {value:335, name:'A'},
-                        {value:310, name:'B'},
-                        {value:274, name:'C'},
-                        {value:235, name:'D'},
-                        {value:400, name:'E'}
-                    ].sort(function (a, b) { return a.value - b.value}),
+                    data: [],
                     roseType: 'angle',
                     label: {
                         normal: {
@@ -48,5 +44,21 @@ module.exports = {
                 }
             ]
         };
+    },
+    ready: function () {
+        var vm = this;
+        Vue.nextTick(function () {
+            vm.$echarts.pieChart.showLoading();
+            setTimeout(function () {
+                vm.pieChartOption.series[0].data = [
+                    { value:335, name:'A' },
+                    { value:310, name:'B' },
+                    { value:274, name:'C' },
+                    { value:235, name:'D' },
+                    { value:400, name:'E' }
+                ].sort(function (a, b) { return a.value - b.value});
+                vm.$echarts.pieChart.hideLoading();
+            }, 3000)
+        })
     }
 };
