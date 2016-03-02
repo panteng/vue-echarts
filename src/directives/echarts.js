@@ -14,6 +14,16 @@ module.exports = {
         Vue.nextTick(function () {
             _this.instance = echarts.init(_this.el);
             _this.vm.$echarts[_this.params.chartId] = _this.instance;
+
+            _this.resizeEventHandler = function () {
+                _this.instance.resize();
+            };
+
+            _this.el.addEventListener('resize', _this.resizeEventHandler, false);
+
+            window.onresize = function () {
+                _this.el.dispatchEvent(new Event('resize'));
+            };
         });
     },
     update: function (val, oldVal) {
@@ -29,5 +39,7 @@ module.exports = {
 
         _this.instance.dispose();
         delete _this.vm.$echarts[_this.params.chartId];
+
+        _this.el.removeEventListener('resize', _this.resizeEventHandler, false);
     }
 };

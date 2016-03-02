@@ -3,6 +3,7 @@ body {
 }
 
 .tab-content {
+    width: 100%;
     border: 1px solid #ddd;
     border-top: none;
 }
