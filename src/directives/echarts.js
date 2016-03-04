@@ -19,11 +19,16 @@ module.exports = {
         var _this = this;
 
         Vue.nextTick(function () {
+            // init echarts instance
             _this.instance = echarts.init(_this.el);
 
+            // show loading animation
             if (_this.params.loading === true) {
                 _this.instance.showLoading();
             }
+
+            // auto resize
+            var resizeEvent = new Event('resize');
 
             _this.resizeEventHandler = function () {
                 _this.instance.resize();
@@ -32,7 +37,7 @@ module.exports = {
             _this.el.addEventListener('resize', _this.resizeEventHandler, false);
 
             window.onresize = function () {
-                _this.el.dispatchEvent(new Event('resize'));
+                _this.el.dispatchEvent(resizeEvent);
             };
         });
     },
