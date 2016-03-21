@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Echarts component for Vue.js.",
   "scripts": {
-    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot"
+    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
+    "prod": "node ./node_modules/webpack/bin/webpack.js -p"
   },
   "repository": {
     "type": "git",
