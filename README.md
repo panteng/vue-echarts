@@ -12,9 +12,9 @@ A custom directive for using [Echarts](http://echarts.baidu.com/) in Vue.js apps
 
 2. Register Vue-Echarts as a directive in your `main.js`:
 
-        Vue.directive('echarts', require('./directives/echarts'));  //  your project structure may be different from mine, so feel free to change the path to `echart.js`.
+        Vue.directive('echarts', require('./directives/echarts'));  //  your project structure may be different from mine, so feel free to change the path of `echart.js`.
        
-3. Echarts need a dom element to draw charts. You can use a `<div>` for that. ** Make sure you give a proper width and height for this `<div>` **.
+3. Echarts need a dom element to draw charts. You can use a `<div>` for that. Make sure you give a proper width and height for this `<div>`.
     
         // template.html
         <div class="chart"></div>
@@ -50,7 +50,7 @@ A custom directive for using [Echarts](http://echarts.baidu.com/) in Vue.js apps
 
         <div class="chart" v-echarts="barChartOption" :loading="barChartLoading"></div>
     
-    set `pieChartLoading` to false before you make a ajax call and set `pieChartLoading` to true when the ajax call finished.
+    set `barChartLoading` to false before you make a ajax call and set `barChartLoading` to true when the ajax call finished.
     
 6. Every time you change the value of `barChartOption`, the chart will immediately reflect the change you've made. You can use this way to make real-time charts, combining with socket technologies.
 
