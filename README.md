@@ -46,7 +46,7 @@ A custom directive for using [Echarts](http://echarts.baidu.com/) in Vue.js apps
             ]
         };
         
-5. If your charts get data from a server and you want loading effects before data returns, these's a property to do this.
+5. If your charts get data from a server and you want loading effects before data returns, there's a property to do this.
 
         <div class="chart" v-echarts="barChartOption" :loading="barChartLoading"></div>
     
