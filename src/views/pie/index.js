@@ -6,7 +6,7 @@ module.exports = {
         return {
             pieChartOption: null,
             pieChartLoading: false
-        }
+        };
     },
     created: function () {
         var vm = this;
@@ -60,9 +60,10 @@ module.exports = {
                     { value:274, name:'C' },
                     { value:235, name:'D' },
                     { value:400, name:'E' }
-                ].sort(function (a, b) { return a.value - b.value});
+                ].sort(function (a, b) { return a.value - b.value; });
+                
                 vm.pieChartLoading = false;
-            }, 3000)
+            }, 3000);
         }
     }
 };

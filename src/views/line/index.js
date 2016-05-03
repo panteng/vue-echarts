@@ -3,7 +3,7 @@ module.exports = {
     data: function () {
         return {
             lineChartOption: null
-        }
+        };
     },
     created: function () {
         var vm = this;

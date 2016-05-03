@@ -2,6 +2,6 @@
 
 A custom directive for using Echarts in Vue.js apps.
 
-[Demo][1]
+![banner](https://raw.githubusercontent.com/panteng/vue-echarts/master/banner.jpg)
 
-[1]: http://panteng.me/demos/vue-echarts
+[Demo](http://panteng.me/demos/vue-echarts)
