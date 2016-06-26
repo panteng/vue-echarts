@@ -28,17 +28,10 @@ module.exports = {
             }
 
             // auto resize
-            var resizeEvent = new Event('resize');
-
             _this.resizeEventHandler = function () {
                 _this.instance.resize();
             };
-
-            _this.el.addEventListener('resize', _this.resizeEventHandler, false);
-
-            window.onresize = function () {
-                _this.el.dispatchEvent(resizeEvent);
-            };
+            window.addEventListener('resize', _this.resizeEventHandler);
         });
     },
     update: function (val, oldVal) {
@@ -54,6 +47,6 @@ module.exports = {
 
         _this.instance.dispose();
 
-        _this.el.removeEventListener('resize', _this.resizeEventHandler, false);
+        window.removeEventListener('resize', _this.resizeEventHandler, false);
     }
 };
