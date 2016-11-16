@@ -28,7 +28,7 @@ module.exports = {
             }
 
             // auto resize
-            var resizeEvent = new Event('resize');
+            // var resizeEvent = new Event('resize');  ie9,10 no work
 
             _this.resizeEventHandler = function () {
                 _this.instance.resize();
@@ -36,9 +36,11 @@ module.exports = {
 
             _this.el.addEventListener('resize', _this.resizeEventHandler, false);
 
-            window.onresize = function () {
-                _this.el.dispatchEvent(resizeEvent);
-            };
+            if(window.attachEvent){
+                window.attachEvent('onresize',_this.resizeEventHandler);
+            }else{
+                window.addEventListener('resize', _this.resizeEventHandler, false);
+            }  
         });
     },
     update: function (val, oldVal) {
@@ -46,6 +48,7 @@ module.exports = {
         var options = val;
 
         Vue.nextTick(function () {
+            _this.instance.clear(); // echarts Redraw
             _this.instance.setOption(options);
         });
     },
@@ -54,6 +57,10 @@ module.exports = {
 
         _this.instance.dispose();
 
-        _this.el.removeEventListener('resize', _this.resizeEventHandler, false);
+        if(window.attachEvent){
+            window.detachEvent('onresize',_this.resizeEventHandler);
+        }else {
+            window.removeEventListener('resize', _this.resizeEventHandler, false);;
+        }
     }
 };
